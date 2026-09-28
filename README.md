@@ -3,15 +3,15 @@
 ## Data model
 | Field | Type | Notes |
 | ----------- | ------------ | ------------------------------------ |
-| <name> | text | required, max 100 chars |
-| <done flag> | boolean | toggled from the list, default false |
-| <fixed tag> | fixed values | <value1>, <value2>, <value3> |
-| <category> | relation | <Cat1>, <Cat2>, <Cat3> |
+| name | text | required, max 100 chars |
+| adopted | boolean | toggled from the list, default false |
+| species | fixed values | cat, dog, rabbit |
+| age_category | relation | Young, Adult, Senior |
 | user | relation | the owner of the item (from week 11) |
 Sample data used across all stages:
-1. <item 1>, active, <tag>
-2. <item 2>, done, <tag>
-3. <item 3>, active, <tag>
+1. "Luna", available, dog
+2. "Bella", adopted, cat
+3. "Daisy", available, rabbit
 ## How to run
 Open `index.html` in a browser. No build step, no server.
 ## AI usage
