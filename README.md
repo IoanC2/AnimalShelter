@@ -17,7 +17,7 @@ Open `index.html` in a browser. No build step, no server.
 ## AI usage
 | Tool | Used for |
 | -------------- | ----------------------------------------- |
-| <e.g. ChatGPT> | <what exactly, e.g. CSS Grid, stage 1> |
+| Gemini | Stage 1 CSS styling, theme variable definition, responsive layout, and documentation |
 Details per stage: see the ai-log/ folder.
 ## Status
 - [x] Stage 1: static mockup
