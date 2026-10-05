@@ -22,7 +22,22 @@ Details per stage: see the ai-log/ folder.
 ## Status
 - [x] Stage 1: static mockup
 ☐ Stage 2: data logic in JavaScript
-
+## Adaptarea la tema proprie
+| Element | TaskFlow | BookShelf | WatchList | Tema proprie: AnimalShelter |
+| --- | --- | --- | --- | --- |
+| fișierul JavaScript | `taskuri.js` | `carti.js` | `filme.js` | `animale.js` |
+| array-ul | `taskuri` | `carti` | `filme` | `animale` |
+| valorile fixe | `PRIORITATI` | `FORMATE` | `TIPURI` | `SPECII` |
+| numărarea elementelor active | `numaraActive` | `numaraNecitite` | `numaraDeVazut` | `numaraDisponibile` |
+| comutarea stării | `comutaGata` | `comutaCitita` | `comutaVazu` | `comutaAdoptia` |
+| adăugarea unui element | `adaugaTask` | `adaugaCarte` | `adaugaFilm` | `adaugaAnimal` |
+| ștergerea unui element | `stergeTask` | `stergeCarte` | `stergeFilm` | `stergeAnimal` |
+| căutarea după ID | `cautaTaskDupaId` | `cautaCarteDupaId` | `cautaFilmDupaId` | `cautaAnimalDupaId` |
+| căutarea după etichetă | `cautaDupaEticheta` | `cautaDupaFormat` | `cautaDupaTip` | `cautaDupaSpecie` |
+| câmpul pentru titlu | `titlu` | `titlu` | `titlu` | `name` |
+| câmpul pentru etichetă | `eticheta` | `format` | `tip` | `species` |
+| câmpul pentru stare | `gata` | `citita` | `vazut` | `adopted` |
+| stare inițială | `false` | `false` | `false` | `false` — disponibil pentru adopție |
 ## Verification table
 | ID | Requirement | Where (permalink) | How to check |
 | --- | --- | --- | --- |
