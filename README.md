@@ -73,6 +73,7 @@ The JSON list from Stage 3 was replaced with reusable React components:
 | S4-R4 | An empty list displays a message | `frontend/src/components/AnimalList.jsx` | Temporarily set `animals` to `[]` |
 | S4-R5 | Adoption state changes the card appearance | `frontend/src/components/AnimalCard.jsx` | Change an animal's `adopted` value and save |
 | S4-R6 | README and AI log are updated | `README.md`, `ai-log/etapa-04.md` | Read the stage documentation |
+| S4-R7 | The Stage 4 changes are committed and published | [Stage 4 commit](https://github.com/IoanC2/AnimalShelter/commit/da62944) | Open the commit and inspect its changed files |
 
 ## Adaptarea la tema proprie
 | Element | TaskFlow | BookShelf | WatchList | Tema proprie: AnimalShelter |
