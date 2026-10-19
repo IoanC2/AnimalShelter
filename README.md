@@ -13,15 +13,67 @@ Sample data used across all stages:
 2. "Bella", adopted, cat
 3. "Daisy", available, rabbit
 ## How to run
-Open `index.html` in a browser. No build step, no server.
+The React application lives in `frontend/` and runs with Vite:
+
+```text
+cd frontend
+npm install
+npm run dev
+```
+
+Open the address printed by Vite (usually `http://localhost:5173`).
+The original static mockup is kept in `mockup/` for reference.
 ## AI usage
 | Tool | Used for |
 | -------------- | ----------------------------------------- |
 | Gemini | Stage 1 CSS styling, theme variable definition, responsive layout, and documentation |
+| GitHub Copilot in Visual Studio Code | Assistance with the React setup, component adaptation, implementation checks, and resolving configuration errors in Stages 3 and 4 |
 Details per stage: see the ai-log/ folder.
 ## Status
 - [x] Stage 1: static mockup
-☐ Stage 2: data logic in JavaScript
+- [x] Stage 2: data logic in JavaScript
+- [x] Stage 3: Vite and React project
+- [x] Stage 4: components rendered from data
+- [ ] Stage 5: local state and events
+
+## Stage 3: Vite and React project
+The app now lives in `frontend/`, built with Vite. The animal data from Stage 2
+was moved into the main React component. The header displays the total number
+of animals and the calculated number of available animals. In Stage 4, the
+temporary JSON output was replaced with reusable React components.
+
+### Stage 3 verification
+
+| ID | Requirement | Where | How to check |
+| --- | --- | --- | --- |
+| S3-R1 | The development server starts without errors | `frontend/package.json` | Run `npm install`, then `npm run dev` from `frontend/` |
+| S3-R2 | The app name and counter are calculated from the data | `frontend/src/App.jsx` | Change an item in `animals` and verify the counter after saving |
+| S3-R3 | The data matches the Animal Shelter README | `frontend/src/App.jsx` | Compare the three objects with the sample data above |
+| S3-R4 | Stage 1 styles are reused | `frontend/src/App.css` | Inspect the rendered page and the copied CSS variables/layout |
+| S3-R5 | Dependencies are ignored and the build passes | `frontend/.gitignore` | Run `npm run build`; `node_modules/` and `dist/` stay untracked |
+| S3-R6 | Documentation and AI log are complete | `README.md`, `ai-log/etapa-03.md` | Read this section and the stage log |
+
+## Stage 4: Components rendered from data
+The JSON list from Stage 3 was replaced with reusable React components:
+
+- `AnimalList` receives the complete `animals` array through props and renders
+  one `AnimalCard` for each item;
+- `AnimalCard` receives one animal through props and displays its name, species,
+  and adoption status;
+- the card appearance changes for adopted animals;
+- an explicit message is displayed when the list is empty.
+
+### Stage 4 verification
+
+| ID | Requirement | Where | How to check |
+| --- | --- | --- | --- |
+| S4-R1 | At least two components exist in `src/components/` | `frontend/src/components/` | Inspect `AnimalCard.jsx` and `AnimalList.jsx` |
+| S4-R2 | The card receives data through props | `frontend/src/components/AnimalCard.jsx` | Inspect `AnimalCard({ animal })` |
+| S4-R3 | The list uses `map` and a stable key | `frontend/src/components/AnimalList.jsx` | Inspect `animals.map` and `key={animal.id}` |
+| S4-R4 | An empty list displays a message | `frontend/src/components/AnimalList.jsx` | Temporarily set `animals` to `[]` |
+| S4-R5 | Adoption state changes the card appearance | `frontend/src/components/AnimalCard.jsx` | Change an animal's `adopted` value and save |
+| S4-R6 | README and AI log are updated | `README.md`, `ai-log/etapa-04.md` | Read the stage documentation |
+
 ## Adaptarea la tema proprie
 | Element | TaskFlow | BookShelf | WatchList | Tema proprie: AnimalShelter |
 | --- | --- | --- | --- | --- |
