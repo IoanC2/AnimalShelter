@@ -4,17 +4,24 @@ const SPECIES_LABELS = {
   rabbit: "Iepure"
 };
 
-export default function AnimalCard({ animal }) {
+export default function AnimalCard({ animal, onToggle, onDelete }) {
   const speciesLabel = SPECIES_LABELS[animal.species] ?? animal.species;
 
   return (
     <li className={animal.adopted ? "item-card done" : "item-card"}>
-      <div>
-        <h3>{animal.name}</h3>
-        <span className={`badge badge-${animal.species}`}>
-          {speciesLabel}
-        </span>
-      </div>
+      <label className="animal-main">
+        <input
+          type="checkbox"
+          checked={animal.adopted}
+          onChange={() => onToggle(animal.id)}
+        />
+        <div>
+          <h3>{animal.name}</h3>
+          <span className={`badge badge-${animal.species}`}>
+            {speciesLabel}
+          </span>
+        </div>
+      </label>
       <span
         className={
           animal.adopted
@@ -24,6 +31,14 @@ export default function AnimalCard({ animal }) {
       >
         {animal.adopted ? "Adoptat" : "Disponibil"}
       </span>
+      <button
+        className="btn-danger"
+        type="button"
+        onClick={() => onDelete(animal.id)}
+        aria-label={`Șterge ${animal.name}`}
+      >
+        Șterge
+      </button>
     </li>
   );
 }

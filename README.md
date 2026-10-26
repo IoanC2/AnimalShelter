@@ -27,14 +27,15 @@ The original static mockup is kept in `mockup/` for reference.
 | Tool | Used for |
 | -------------- | ----------------------------------------- |
 | Gemini | Stage 1 CSS styling, theme variable definition, responsive layout, and documentation |
-| GitHub Copilot in Visual Studio Code | Assistance with the React setup, component adaptation, implementation checks, and resolving configuration errors in Stages 3 and 4 |
+| GitHub Copilot in Visual Studio Code | Assistance with the React setup, component adaptation, implementation checks, and resolving configuration errors in Stages 3, 4, and 5 |
 Details per stage: see the ai-log/ folder.
 ## Status
 - [x] Stage 1: static mockup
 - [x] Stage 2: data logic in JavaScript
 - [x] Stage 3: Vite and React project
 - [x] Stage 4: components rendered from data
-- [ ] Stage 5: local state and events
+- [x] Stage 5: local state and events
+- [ ] Stage 6: loading data from a mock API
 
 ## Stage 3: Vite and React project
 The app now lives in `frontend/`, built with Vite. The animal data from Stage 2
@@ -67,13 +68,32 @@ The JSON list from Stage 3 was replaced with reusable React components:
 
 | ID | Requirement | Where | How to check |
 | --- | --- | --- | --- |
-| S4-R1 | At least two components exist in `src/components/` | `frontend/src/components/` | Inspect `AnimalCard.jsx` and `AnimalList.jsx` |
-| S4-R2 | The card receives data through props | `frontend/src/components/AnimalCard.jsx` | Inspect `AnimalCard({ animal })` |
-| S4-R3 | The list uses `map` and a stable key | `frontend/src/components/AnimalList.jsx` | Inspect `animals.map` and `key={animal.id}` |
-| S4-R4 | An empty list displays a message | `frontend/src/components/AnimalList.jsx` | Temporarily set `animals` to `[]` |
-| S4-R5 | Adoption state changes the card appearance | `frontend/src/components/AnimalCard.jsx` | Change an animal's `adopted` value and save |
-| S4-R6 | README and AI log are updated | `README.md`, `ai-log/etapa-04.md` | Read the stage documentation |
-| S4-R7 | The Stage 4 changes are committed and published | [Stage 4 commit](https://github.com/IoanC2/AnimalShelter/commit/da62944) | Open the commit and inspect its changed files |
+| S4-R1 | At least two components exist in `src/components/` | [`AnimalCard.jsx`](https://github.com/IoanC2/AnimalShelter/blob/da62944291a7ca9ef6fab30b7add96040251daf3/frontend/src/components/AnimalCard.jsx), [`AnimalList.jsx`](https://github.com/IoanC2/AnimalShelter/blob/da62944291a7ca9ef6fab30b7add96040251daf3/frontend/src/components/AnimalList.jsx) | Inspect the two component files |
+| S4-R2 | The card receives data through props | [`AnimalCard.jsx#L6`](https://github.com/IoanC2/AnimalShelter/blob/da62944291a7ca9ef6fab30b7add96040251daf3/frontend/src/components/AnimalCard.jsx#L6) | Inspect `AnimalCard({ animal })` |
+| S4-R3 | The list uses `map` and a stable key | [`AnimalList.jsx#L10-L11`](https://github.com/IoanC2/AnimalShelter/blob/da62944291a7ca9ef6fab30b7add96040251daf3/frontend/src/components/AnimalList.jsx#L10-L11) | Inspect `animals.map` and `key={animal.id}` |
+| S4-R4 | An empty list displays a message | [`AnimalList.jsx#L4`](https://github.com/IoanC2/AnimalShelter/blob/da62944291a7ca9ef6fab30b7add96040251daf3/frontend/src/components/AnimalList.jsx#L4) | Temporarily set `animals` to `[]` |
+| S4-R5 | Adoption state changes the card appearance | [`AnimalCard.jsx#L11-L26`](https://github.com/IoanC2/AnimalShelter/blob/da62944291a7ca9ef6fab30b7add96040251daf3/frontend/src/components/AnimalCard.jsx#L11-L26) | Change an animal's `adopted` value and save |
+| S4-R6 | README and AI log are updated | [`README.md#L56-L76`](https://github.com/IoanC2/AnimalShelter/blob/da62944291a7ca9ef6fab30b7add96040251daf3/README.md#L56-L76), [`ai-log/etapa-04.md`](https://github.com/IoanC2/AnimalShelter/blob/da62944291a7ca9ef6fab30b7add96040251daf3/ai-log/etapa-04.md) | Read the stage documentation |
+| S4-R7 | The Stage 4 changes are committed and published | [Stage 4 commit](https://github.com/IoanC2/AnimalShelter/commit/da62944291a7ca9ef6fab30b7add96040251daf3) | Open the commit and inspect its changed files |
+
+## Stage 5: Local state and events
+The animal list now lives in React state. Users can toggle adoption status,
+delete animals, and switch between light and dark themes. The counters are
+derived from the current state and update automatically. Changes are kept in
+memory and reset when the page is refreshed.
+
+### Stage 5 verification
+
+| ID | Requirement | Where | How to check |
+| --- | --- | --- | --- |
+| S5-R1 | The list is stored in `useState` in `App` | `frontend/src/App.jsx` | Inspect the state declaration |
+| S5-R2 | Checking an animal changes its status and card appearance | `frontend/src/components/AnimalCard.jsx` | Click an animal checkbox |
+| S5-R3 | Deleting removes an animal from the list | `frontend/src/App.jsx`, `frontend/src/components/AnimalCard.jsx` | Click `Șterge` |
+| S5-R4 | The available counter is derived from state | `frontend/src/App.jsx` | Toggle an animal and watch the header |
+| S5-R5 | Updates are immutable | `frontend/src/App.jsx` | Inspect the `map` and `filter` updates |
+| S5-R6 | The theme button switches light and dark mode | `frontend/src/App.jsx`, `frontend/src/App.css` | Click the theme button in both directions |
+| S5-R7 | Documentation and AI log are updated | `README.md`, `ai-log/etapa-05.md` | Read the stage documentation |
+| S5-R8 | The Stage 5 changes are committed and published | Git history and GitHub | Check the Stage 5 commit |
 
 ## Adaptarea la tema proprie
 | Element | TaskFlow | BookShelf | WatchList | Tema proprie: AnimalShelter |

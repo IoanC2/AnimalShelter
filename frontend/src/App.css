@@ -50,6 +50,57 @@
     --danger-soft: #512A2A;
   }
 
+  [data-theme="light"] {
+    color-scheme: light;
+    --bg: #F6F4EF;
+    --card: #FFFFFF;
+    --text: #263238;
+    --muted: #667085;
+    --primary: #24534A;
+    --primary-light: #39796B;
+    --accent: #D9822B;
+    --accent-dark: #B96820;
+    --accent-soft: #F3D7A4;
+    --border: #D9E2DE;
+    --success: #287D55;
+    --success-soft: #E4F3EA;
+    --danger: #B54747;
+    --danger-soft: #FBE9E9;
+    --header-muted: #F3D7A4;
+    --input-bg: #FFFFFF;
+    --done-bg: #FAFAFA;
+    --header-start: #24534A;
+    --header-end: #39796B;
+  }
+
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #172421;
+    --card: #21332F;
+    --text: #F1F5F3;
+    --muted: #B7C6C1;
+    --primary: #39796B;
+    --primary-light: #5D9E8E;
+    --accent: #E39A4A;
+    --accent-dark: #F3B96F;
+    --accent-soft: #604522;
+    --border: #38524B;
+    --header-muted: #D9F0E8;
+    --input-bg: #21332F;
+    --done-bg: #21332F;
+    --header-start: #172421;
+    --header-end: #39796B;
+    --success: #7AC49A;
+    --success-soft: #1E4533;
+    --danger: #F19A9A;
+    --danger-soft: #512A2A;
+  }
+
+  [data-theme="light"] body,
+  [data-theme="dark"] body {
+    background: var(--bg);
+  }
+
   body {
     background: var(--bg);
   }
@@ -261,6 +312,44 @@ button {
   padding: 14px 16px;
   border: 1px solid var(--border);
   border-radius: 10px;
+}
+
+.animal-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.animal-main input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.btn-danger {
+  padding: 6px 12px;
+  border: 1px solid var(--danger);
+  background: transparent;
+  color: var(--danger);
+}
+
+.btn-danger:hover {
+  background: var(--danger);
+  color: var(--header-text);
+}
+
+.theme-toggle {
+  margin-bottom: 18px;
+  padding: 7px 12px;
+  border: 1px solid rgb(255 255 255 / 35%);
+  background: rgb(255 255 255 / 12%);
+  color: var(--header-text);
+}
+
+.theme-toggle:hover {
+  background: rgb(255 255 255 / 22%);
 }
 
 .item-card h3 {
