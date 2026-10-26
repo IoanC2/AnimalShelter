@@ -86,14 +86,14 @@ memory and reset when the page is refreshed.
 
 | ID | Requirement | Where | How to check |
 | --- | --- | --- | --- |
-| S5-R1 | The list is stored in `useState` in `App` | `frontend/src/App.jsx` | Inspect the state declaration |
-| S5-R2 | Checking an animal changes its status and card appearance | `frontend/src/components/AnimalCard.jsx` | Click an animal checkbox |
-| S5-R3 | Deleting removes an animal from the list | `frontend/src/App.jsx`, `frontend/src/components/AnimalCard.jsx` | Click `Șterge` |
-| S5-R4 | The available counter is derived from state | `frontend/src/App.jsx` | Toggle an animal and watch the header |
-| S5-R5 | Updates are immutable | `frontend/src/App.jsx` | Inspect the `map` and `filter` updates |
-| S5-R6 | The theme button switches light and dark mode | `frontend/src/App.jsx`, `frontend/src/App.css` | Click the theme button in both directions |
-| S5-R7 | Documentation and AI log are updated | `README.md`, `ai-log/etapa-05.md` | Read the stage documentation |
-| S5-R8 | The Stage 5 changes are committed and published | Git history and GitHub | Check the Stage 5 commit |
+| S5-R1 | The list is stored in `useState` in `App` | [`App.jsx#L16`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/App.jsx#L16) | Inspect the state declaration |
+| S5-R2 | Checking an animal changes its status and card appearance | [`AnimalCard.jsx#L9-L16`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/components/AnimalCard.jsx#L9-L16) | Click an animal checkbox |
+| S5-R3 | Deleting removes an animal from the list | [`App.jsx#L30-L34`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/App.jsx#L30-L34), [`AnimalCard.jsx#L28-L34`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/components/AnimalCard.jsx#L28-L34) | Click `Șterge` |
+| S5-R4 | The available counter is derived from state | [`App.jsx#L18`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/App.jsx#L18) | Toggle an animal and watch the header |
+| S5-R5 | Updates are immutable | [`App.jsx#L21-L34`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/App.jsx#L21-L34) | Inspect the `map` and `filter` updates |
+| S5-R6 | The theme button switches light and dark mode | [`App.jsx#L36-L40`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/App.jsx#L36-L40), [`App.css#L78-L119`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/App.css#L78-L119) | Click the theme button in both directions |
+| S5-R7 | Documentation and AI log are updated | [`README.md#L79-L98`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/README.md#L79-L98), [`ai-log/etapa-05.md`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/ai-log/etapa-05.md) | Read the stage documentation |
+| S5-R8 | The Stage 5 changes are committed and published | [Stage 5 commit](https://github.com/IoanC2/AnimalShelter/commit/c4bc04db61aac539b2eb73cec11053b8224f4b5c) | Open the commit and inspect its changed files |
 
 ## Adaptarea la tema proprie
 | Element | TaskFlow | BookShelf | WatchList | Tema proprie: AnimalShelter |
