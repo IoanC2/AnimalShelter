@@ -77,10 +77,10 @@ The JSON list from Stage 3 was replaced with reusable React components:
 | S4-R7 | The Stage 4 changes are committed and published | [Stage 4 commit](https://github.com/IoanC2/AnimalShelter/commit/da62944291a7ca9ef6fab30b7add96040251daf3) | Open the commit and inspect its changed files |
 
 ## Stage 5: Local state and events
-The animal list now lives in React state. Users can toggle adoption status,
-delete animals, and switch between light and dark themes. The counters are
-derived from the current state and update automatically. Changes are kept in
-memory and reset when the page is refreshed.
+The animal list now lives in React state. Users can add animals through the
+form, toggle adoption status, delete animals, and switch between light and dark
+themes. The counters are derived from the current state and update
+automatically. Changes are kept in memory and reset when the page is refreshed.
 
 ### Stage 5 verification
 
@@ -94,6 +94,10 @@ memory and reset when the page is refreshed.
 | S5-R6 | The theme button switches light and dark mode | [`App.jsx#L36-L40`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/App.jsx#L36-L40), [`App.css#L78-L119`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/App.css#L78-L119) | Click the theme button in both directions |
 | S5-R7 | Documentation and AI log are updated | [`README.md#L79-L98`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/README.md#L79-L98), [`ai-log/etapa-05.md`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/ai-log/etapa-05.md) | Read the stage documentation |
 | S5-R8 | The Stage 5 changes are committed and published | [Stage 5 commit](https://github.com/IoanC2/AnimalShelter/commit/c4bc04db61aac539b2eb73cec11053b8224f4b5c) | Open the commit and inspect its changed files |
+
+The add-animal form is an extra interaction built on the same local state. It
+validates the name in the browser, creates a new available animal, and renders
+the new card without reloading the page.
 
 ## Adaptarea la tema proprie
 | Element | TaskFlow | BookShelf | WatchList | Tema proprie: AnimalShelter |

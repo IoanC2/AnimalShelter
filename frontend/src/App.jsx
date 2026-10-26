@@ -34,6 +34,31 @@ export default function App() {
     );
   }
 
+  function handleAdd(event) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const name = formData.get("name").trim();
+    const species = formData.get("species");
+
+    if (!name) {
+      return;
+    }
+
+    setAnimals((previousAnimals) => {
+      const nextId = previousAnimals.reduce(
+        (maximumId, animal) => Math.max(maximumId, animal.id),
+        0
+      ) + 1;
+
+      return [
+        ...previousAnimals,
+        { id: nextId, name, adopted: false, species }
+      ];
+    });
+
+    event.currentTarget.reset();
+  }
+
   function handleThemeToggle() {
     const nextTheme = theme === "dark" ? "light" : "dark";
     setTheme(nextTheme);
@@ -66,6 +91,35 @@ export default function App() {
       </header>
 
       <main className="container">
+        <section className="panel">
+          <h2>Adaugă un animal</h2>
+          <p className="panel-intro">
+            Completează datele pentru a adăuga un animal disponibil.
+          </p>
+          <form className="item-form" onSubmit={handleAdd}>
+            <label htmlFor="animal-name">
+              Nume
+              <input
+                id="animal-name"
+                name="name"
+                type="text"
+                maxLength="100"
+                placeholder="Ex: Max"
+                required
+              />
+            </label>
+            <label htmlFor="animal-species">
+              Specie
+              <select id="animal-species" name="species" defaultValue="dog">
+                <option value="dog">Câine</option>
+                <option value="cat">Pisică</option>
+                <option value="rabbit">Iepure</option>
+              </select>
+            </label>
+            <button type="submit">Adaugă animal</button>
+          </form>
+        </section>
+
         <section className="panel">
           <h2>Animalele din adăpost</h2>
           <p className="panel-intro">
