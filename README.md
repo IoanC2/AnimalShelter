@@ -86,18 +86,19 @@ automatically. Changes are kept in memory and reset when the page is refreshed.
 
 | ID | Requirement | Where | How to check |
 | --- | --- | --- | --- |
-| S5-R1 | The list is stored in `useState` in `App` | [`App.jsx#L16`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/App.jsx#L16) | Inspect the state declaration |
-| S5-R2 | Checking an animal changes its status and card appearance | [`AnimalCard.jsx#L9-L16`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/components/AnimalCard.jsx#L9-L16) | Click an animal checkbox |
-| S5-R3 | Deleting removes an animal from the list | [`App.jsx#L30-L34`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/App.jsx#L30-L34), [`AnimalCard.jsx#L28-L34`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/components/AnimalCard.jsx#L28-L34) | Click `Șterge` |
-| S5-R4 | The available counter is derived from state | [`App.jsx#L18`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/App.jsx#L18) | Toggle an animal and watch the header |
-| S5-R5 | Updates are immutable | [`App.jsx#L21-L34`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/App.jsx#L21-L34) | Inspect the `map` and `filter` updates |
-| S5-R6 | The theme button switches light and dark mode | [`App.jsx#L36-L40`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/App.jsx#L36-L40), [`App.css#L78-L119`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/App.css#L78-L119) | Click the theme button in both directions |
-| S5-R7 | Documentation and AI log are updated | [`README.md#L79-L98`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/README.md#L79-L98), [`ai-log/etapa-05.md`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/ai-log/etapa-05.md) | Read the stage documentation |
+| S5-R1 | The list is stored in `useState` in `App` | [`App.jsx#L17`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/frontend/src/App.jsx#L17) | Inspect the state declaration |
+| S5-R2 | Checking an animal changes its status and card appearance | [`AnimalCard.jsx#L9-L16`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/frontend/src/components/AnimalCard.jsx#L9-L16) | Click an animal checkbox |
+| S5-R3 | Deleting removes an animal from the list | [`App.jsx#L31-L35`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/frontend/src/App.jsx#L31-L35), [`AnimalCard.jsx#L28-L34`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/components/AnimalCard.jsx#L28-L34) | Click `Șterge` |
+| S5-R4 | The available counter is derived from state | [`App.jsx#L19`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/frontend/src/App.jsx#L19) | Toggle an animal and watch the header |
+| S5-R5 | Updates are immutable | [`App.jsx#L21-L57`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/frontend/src/App.jsx#L21-L57) | Inspect the `map`, `filter`, and spread updates |
+| S5-R6 | The theme button switches light and dark mode | [`App.jsx#L62-L66`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/frontend/src/App.jsx#L62-L66), [`App.css#L78-L119`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/App.css#L78-L119) | Click the theme button in both directions |
+| S5-R7 | Documentation and AI log are updated | [`README.md#L79-L100`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/README.md#L79-L100), [`ai-log/etapa-05.md`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/ai-log/etapa-05.md) | Read the stage documentation |
 | S5-R8 | The Stage 5 changes are committed and published | [Stage 5 commit](https://github.com/IoanC2/AnimalShelter/commit/c4bc04db61aac539b2eb73cec11053b8224f4b5c) | Open the commit and inspect its changed files |
+| S5-R9 | The extra add-animal form creates a new available card | [`App.jsx#L37-L60`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/frontend/src/App.jsx#L37-L60), [`App.jsx#L94-L120`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7532fc5f56c97671/frontend/src/App.jsx#L94-L120) | Fill in the form and click `Adaugă animal` |
 
 The add-animal form is an extra interaction built on the same local state. It
 validates the name in the browser, creates a new available animal, and renders
-the new card without reloading the page.
+the new card without reloading the page. See the [add-animal commit](https://github.com/IoanC2/AnimalShelter/commit/53cf55058babf619aee1d7539672fc5f56c97671).
 
 ## Adaptarea la tema proprie
 | Element | TaskFlow | BookShelf | WatchList | Tema proprie: AnimalShelter |
