@@ -1,10 +1,32 @@
 const animals = [
-  { id: 1, name: "Luna", adopted: false, species: "dog" },
-  { id: 2, name: "Bella", adopted: true, species: "cat" },
-  { id: 3, name: "Daisy", adopted: false, species: "rabbit" }
+  {
+    id: 1,
+    name: "Luna",
+    adopted: false,
+    species: "dog",
+    age_category: "Adult",
+    user: "Ana"
+  },
+  {
+    id: 2,
+    name: "Bella",
+    adopted: true,
+    species: "cat",
+    age_category: "Senior",
+    user: "Mihai"
+  },
+  {
+    id: 3,
+    name: "Daisy",
+    adopted: false,
+    species: "rabbit",
+    age_category: "Young",
+    user: "Ioana"
+  }
 ];
 
 const SPECIES = ["dog", "cat", "rabbit"];
+const AGE_CATEGORIES = ["Young", "Adult", "Senior"];
 
 function listSpecies(animals) {
   return animals.map((animal) => animal.species);
@@ -19,20 +41,27 @@ function countAvailable(animals) {
 }
 
 function findAnimalByName(animals, name) {
-  return animals.find((animal) => animal.name === name);
+  const searchText = name.trim().toLowerCase();
+  return animals.find((animal) => animal.name.toLowerCase().includes(searchText));
 }
 
-function addAnimal(animals, name, species) {
-  if (!name.trim()) {
+function addAnimal(animals, name, species, ageCategory = "Young", user = "Alex") {
+  const cleanName = name.trim();
+
+  if (!cleanName) {
     throw new Error("Animal name is required.");
   }
 
-  if (name.length > 100) {
+  if (cleanName.length > 100) {
     throw new Error("Animal name must not exceed 100 characters.");
   }
 
   if (!SPECIES.includes(species)) {
     throw new Error("Invalid animal species.");
+  }
+
+  if (!AGE_CATEGORIES.includes(ageCategory)) {
+    throw new Error("Invalid age category.");
   }
 
   const nextId = animals.reduce(
@@ -42,9 +71,11 @@ function addAnimal(animals, name, species) {
 
   const newAnimal = {
     id: nextId,
-    name,
+    name: cleanName,
     adopted: false,
-    species
+    species,
+    age_category: ageCategory,
+    user
   };
 
   return [...animals, newAnimal];
@@ -66,8 +97,8 @@ console.log("--- Reading ---");
 console.log("Names:", listNames(animals).join(", "));
 console.log("Available:", countAvailable(animals));
 console.log(
-  "Search 'Luna':",
-  findAnimalByName(animals, "Luna")
+  "Search 'lun':",
+  findAnimalByName(animals, "lun")
 );
 
 console.log("--- Adding ---");

@@ -131,10 +131,48 @@ body {
   line-height: 1.5;
 }
 
+body::before,
+body::after {
+  position: fixed;
+  z-index: -1;
+  width: 280px;
+  height: 280px;
+  border-radius: 45% 55% 60% 40%;
+  background: var(--accent-soft);
+  content: "";
+  opacity: .2;
+  pointer-events: none;
+}
+
+body::before {
+  top: 20%;
+  left: -150px;
+  transform: rotate(25deg);
+}
+
+body::after {
+  right: -160px;
+  bottom: 8%;
+  transform: rotate(-35deg);
+}
+
 .app-header {
+  position: relative;
+  isolation: isolate;
   padding: 40px 16px;
   color: var(--header-text);
+  background:
+    linear-gradient(90deg, rgb(36 83 74 / 88%), rgb(36 83 74 / 52%)),
+    url("/shelter-banner.jpg") center 48% / cover no-repeat;
+}
+
+.app-header::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
   background: linear-gradient(135deg, var(--header-start), var(--header-end));
+  content: "";
+  opacity: .24;
 }
 
 .header-content,
@@ -194,9 +232,16 @@ h1 {
   color: var(--header-text);
 }
 
+.animal-avatar {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 38% 62% 55% 45%;
+}
+
 .container {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(230px, 1fr) minmax(0, 2fr);
   gap: 24px;
   align-items: start;
   margin-top: 28px;
@@ -214,6 +259,11 @@ h1 {
 .panel h2 {
   margin-bottom: 6px;
   font-size: 1.25rem;
+}
+
+.panel-eyebrow {
+  margin-bottom: 2px;
+  color: var(--primary-light);
 }
 
 .panel-intro {
@@ -312,6 +362,13 @@ button {
   padding: 14px 16px;
   border: 1px solid var(--border);
   border-radius: 10px;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.item-card:hover {
+  border-color: var(--primary-light);
+  box-shadow: 0 8px 18px rgb(36 83 74 / 10%);
+  transform: translateY(-2px);
 }
 
 .animal-main {
@@ -319,6 +376,29 @@ button {
   align-items: center;
   gap: 12px;
   cursor: pointer;
+}
+
+.animal-avatar {
+  width: 52px;
+  height: 52px;
+  font-size: 1.8rem;
+  transition: transform .2s ease;
+}
+
+.item-card:hover .animal-avatar {
+  transform: rotate(-8deg) scale(1.08);
+}
+
+.avatar-dog {
+  background: var(--accent-soft);
+}
+
+.avatar-cat {
+  background: #f2b14b;
+}
+
+.avatar-rabbit {
+  background: #fae3b0;
 }
 
 .animal-main input[type="checkbox"] {
@@ -355,6 +435,52 @@ button {
 .item-card h3 {
   margin-bottom: 6px;
   font-size: 1rem;
+}
+
+.card-meta {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: .8rem;
+}
+
+.profile-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.profile-tags span {
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--text);
+  font-size: .68rem;
+  font-weight: 600;
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.filter-button {
+  padding: 7px 11px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-size: .8rem;
+  font-weight: 700;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.filter-button:hover,
+.filter-button.active {
+  background: var(--primary);
+  color: var(--header-text);
+  transform: translateY(-1px);
 }
 
 .badge,
@@ -432,5 +558,24 @@ button {
 
   .container {
     grid-template-columns: 1fr;
+  }
+
+  .item-card {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .animal-main {
+    flex: 1 1 calc(100% - 68px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
   }
 }

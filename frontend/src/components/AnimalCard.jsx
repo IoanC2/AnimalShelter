@@ -6,9 +6,13 @@ const SPECIES_LABELS = {
 
 export default function AnimalCard({ animal, onToggle, onDelete }) {
   const speciesLabel = SPECIES_LABELS[animal.species] ?? animal.species;
+  const animalEmoji = animal.species === "dog" ? "🐶" : animal.species === "cat" ? "🐱" : "🐰";
 
   return (
     <li className={animal.adopted ? "item-card done" : "item-card"}>
+      <div className={`animal-avatar avatar-${animal.species}`} aria-hidden="true">
+        {animalEmoji}
+      </div>
       <label className="animal-main">
         <input
           type="checkbox"
@@ -20,6 +24,12 @@ export default function AnimalCard({ animal, onToggle, onDelete }) {
           <span className={`badge badge-${animal.species}`}>
             {speciesLabel}
           </span>
+          <p className="card-meta">
+            {animal.age_category} · responsabil: {animal.user}
+          </p>
+          <div className="profile-tags">
+            <span>{animal.adopted ? "Familie găsită" : "În așteptarea unei familii"}</span>
+          </div>
         </div>
       </label>
       <span

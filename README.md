@@ -1,19 +1,31 @@
-# <AnimalShelter>
-<This app is used to manage an animal shelter>
-## Data model
-| Field | Type | Notes |
-| ----------- | ------------ | ------------------------------------ |
-| name | text | required, max 100 chars |
-| adopted | boolean | toggled from the list, default false |
-| species | fixed values | cat, dog, rabbit |
-| age_category | relation | Young, Adult, Senior |
-| user | relation | the owner of the item (from week 11) |
-Sample data used across all stages:
-1. "Luna", available, dog
-2. "Bella", adopted, cat
-3. "Daisy", available, rabbit
-## How to run
-The React application lives in `frontend/` and runs with Vite:
+# AnimalShelter
+
+AnimalShelter este o aplicație web pentru administrarea animalelor dintr-un adăpost:
+adăugare, evidența adopției și ștergere.
+
+## Modelul de date
+
+Fiecare animal are câmpurile obligatorii cerute de ghid:
+
+| Câmp | Tip | Rol |
+| --- | --- | --- |
+| `name` | text | numele animalului, obligatoriu, maximum 100 de caractere |
+| `adopted` | boolean | starea adopției, schimbată prin bifare |
+| `species` | valoare fixă | `dog`, `cat` sau `rabbit` |
+| `age_category` | valoare fixă | `Young`, `Adult` sau `Senior` |
+| `user` | text | persoana responsabilă de animal |
+
+Datele de test folosite în toate etapele:
+
+1. Luna — disponibilă, câine, Adult, Ana
+2. Bella — adoptată, pisică, Senior, Mihai
+3. Daisy — disponibilă, iepure, Young, Ioana
+
+## Cum se rulează
+
+Mockup-ul static se deschide din [`mockup/index.html`](mockup/index.html).
+
+Aplicația React se rulează astfel:
 
 ```text
 cd frontend
@@ -21,116 +33,111 @@ npm install
 npm run dev
 ```
 
-Open the address printed by Vite (usually `http://localhost:5173`).
-The original static mockup is kept in `mockup/` for reference.
+Pentru verificarea producției:
+
+```text
+npm run lint
+npm run build
+```
+
 ## AI usage
-| Tool | Used for |
-| -------------- | ----------------------------------------- |
-| Gemini | Stage 1 CSS styling, theme variable definition, responsive layout, and documentation |
-| GitHub Copilot in Visual Studio Code | Assistance with the React setup, component adaptation, implementation checks, and resolving configuration errors in Stages 3, 4, and 5 |
-Details per stage: see the ai-log/ folder.
-## Status
-- [x] Stage 1: static mockup
-- [x] Stage 2: data logic in JavaScript
-- [x] Stage 3: Vite and React project
-- [x] Stage 4: components rendered from data
-- [x] Stage 5: local state and events
-- [ ] Stage 6: loading data from a mock API
 
-## Stage 3: Vite and React project
-The app now lives in `frontend/`, built with Vite. The animal data from Stage 2
-was moved into the main React component. The header displays the total number
-of animals and the calculated number of available animals. In Stage 4, the
-temporary JSON output was replaced with reusable React components.
+| Instrument | Utilizare |
+| --- | --- |
+| Gemini | stilizarea CSS din Etapa 1, variabilele de temă, layout responsive și documentație |
+| GitHub Copilot în Visual Studio Code | configurarea React, componentele, interacțiunile și verificarea codului din Etapele 3–5 |
 
-### Stage 3 verification
+Nu există linkuri publice către conversațiile AI; au fost păstrate transcripturi și
+descrieri ale solicitărilor în jurnalele din [`ai-log/`](ai-log/).
 
-| ID | Requirement | Where | How to check |
+## Starea etapelor
+
+- [x] Etapa 1: mockup HTML și CSS
+- [x] Etapa 2: logică pe date în JavaScript
+- [x] Etapa 3: proiect Vite și React
+- [x] Etapa 4: componente construite din date
+- [x] Etapa 5: state local și evenimente
+
+## Etapa 1: mockup HTML și CSS
+
+Implementarea este în [`mockup/index.html`](mockup/index.html) și
+[`mockup/style.css`](mockup/style.css). Pagina are antet, formular, trei carduri,
+două coloane pe desktop, o coloană sub 700 px, focus vizibil și temă întunecată.
+
+## Etapa 2: logică pe date
+
+Implementarea este în [`mockup/animals.js`](mockup/animals.js), legat de pagina
+statică. Funcțiile listează, numără, caută, adaugă cu validare, comută adopția și
+șterg animale fără să modifice array-ul primit. Testele sunt afișate în consola
+browserului la încărcarea paginii.
+
+## Etapa 3: Vite și React
+
+Aplicația React este în [`frontend/`](frontend/). Datele inițiale sunt în
+[`frontend/src/App.jsx`](frontend/src/App.jsx), iar stilurile reutilizează
+structura mockup-ului în [`frontend/src/App.css`](frontend/src/App.css).
+
+## Etapa 4: componente
+
+[`AnimalList.jsx`](frontend/src/components/AnimalList.jsx) primește array-ul prin
+props și folosește `map` cu `key={animal.id}`. [`AnimalCard.jsx`](frontend/src/components/AnimalCard.jsx)
+primește un animal prin props, afișează câmpurile lui și tratează vizual starea
+adopției. Lista goală afișează un mesaj explicit.
+
+## Etapa 5: state și evenimente
+
+Lista este păstrată în `useState`. Formularul colectează numele, specia,
+categoria de vârstă și persoana responsabilă. Checkbox-ul comută adopția,
+butonul șterge animalul, contorul disponibil este derivat din state, iar butonul
+din antet comută tema luminoasă/întunecată prin `data-theme` și variabile CSS.
+Formularul adaugă animale noi în state, cu toate câmpurile modelului.
+
+## Direcție vizuală
+
+Interfața folosește paleta verde-portocalie existentă, îmbogățită cu filtre
+pentru listă, carduri de profil cu avataruri tematice, etichete de personalitate,
+forme organice discrete și micro-animații. Animațiile se dezactivează automat
+pentru utilizatorii care preferă reducerea mișcării. Header-ul folosește bannerul
+fotografic [`shelter-banner.jpg`](frontend/public/shelter-banner.jpg), cu overlay
+verde pentru lizibilitatea textului.
+
+## Tabele de verificare
+
+### Etapa 1
+
+| ID | Cerință | Unde | Verificare |
 | --- | --- | --- | --- |
-| S3-R1 | The development server starts without errors | `frontend/package.json` | Run `npm install`, then `npm run dev` from `frontend/` |
-| S3-R2 | The app name and counter are calculated from the data | `frontend/src/App.jsx` | Change an item in `animals` and verify the counter after saving |
-| S3-R3 | The data matches the Animal Shelter README | `frontend/src/App.jsx` | Compare the three objects with the sample data above |
-| S3-R4 | Stage 1 styles are reused | `frontend/src/App.css` | Inspect the rendered page and the copied CSS variables/layout |
-| S3-R5 | Dependencies are ignored and the build passes | `frontend/.gitignore` | Run `npm run build`; `node_modules/` and `dist/` stay untracked |
-| S3-R6 | Documentation and AI log are complete | `README.md`, `ai-log/etapa-03.md` | Read this section and the stage log |
+| S1-R1 | descriere, câmpuri, date de test și rulare | [`README.md`](README.md) | citește secțiunile de mai sus |
+| S1-R2 | secțiunea AI usage | [`README.md`](README.md) | citește secțiunea AI usage |
+| S1-R3 | jurnalul etapei | [`ai-log/etapa-01.md`](ai-log/etapa-01.md) | citește jurnalul |
+| S1-R4 | antet, formular, select și trei carduri | [`mockup/index.html`](mockup/index.html) | deschide pagina |
+| S1-R5 | card adoptat cu aspect distinct | [`mockup/style.css`](mockup/style.css) | verifică `.done` |
+| S1-R6 | două coloane/una sub 700 px | [`mockup/style.css`](mockup/style.css) | redimensionează fereastra |
+| S1-R7 | focus vizibil și temă întunecată | [`mockup/style.css`](mockup/style.css) | folosește Tab și tema sistemului |
+| S1-R8 | commit public cu mesaj `Stage 1` | istoricul Git | de completat prin commit conform |
 
-## Stage 4: Components rendered from data
-The JSON list from Stage 3 was replaced with reusable React components:
+### Etapa 2
 
-- `AnimalList` receives the complete `animals` array through props and renders
-  one `AnimalCard` for each item;
-- `AnimalCard` receives one animal through props and displays its name, species,
-  and adoption status;
-- the card appearance changes for adopted animals;
-- an explicit message is displayed when the list is empty.
-
-### Stage 4 verification
-
-| ID | Requirement | Where | How to check |
+| ID | Cerință | Unde | Verificare |
 | --- | --- | --- | --- |
-| S4-R1 | At least two components exist in `src/components/` | [`AnimalCard.jsx`](https://github.com/IoanC2/AnimalShelter/blob/da62944291a7ca9ef6fab30b7add96040251daf3/frontend/src/components/AnimalCard.jsx), [`AnimalList.jsx`](https://github.com/IoanC2/AnimalShelter/blob/da62944291a7ca9ef6fab30b7add96040251daf3/frontend/src/components/AnimalList.jsx) | Inspect the two component files |
-| S4-R2 | The card receives data through props | [`AnimalCard.jsx#L6`](https://github.com/IoanC2/AnimalShelter/blob/da62944291a7ca9ef6fab30b7add96040251daf3/frontend/src/components/AnimalCard.jsx#L6) | Inspect `AnimalCard({ animal })` |
-| S4-R3 | The list uses `map` and a stable key | [`AnimalList.jsx#L10-L11`](https://github.com/IoanC2/AnimalShelter/blob/da62944291a7ca9ef6fab30b7add96040251daf3/frontend/src/components/AnimalList.jsx#L10-L11) | Inspect `animals.map` and `key={animal.id}` |
-| S4-R4 | An empty list displays a message | [`AnimalList.jsx#L4`](https://github.com/IoanC2/AnimalShelter/blob/da62944291a7ca9ef6fab30b7add96040251daf3/frontend/src/components/AnimalList.jsx#L4) | Temporarily set `animals` to `[]` |
-| S4-R5 | Adoption state changes the card appearance | [`AnimalCard.jsx#L11-L26`](https://github.com/IoanC2/AnimalShelter/blob/da62944291a7ca9ef6fab30b7add96040251daf3/frontend/src/components/AnimalCard.jsx#L11-L26) | Change an animal's `adopted` value and save |
-| S4-R6 | README and AI log are updated | [`README.md#L56-L76`](https://github.com/IoanC2/AnimalShelter/blob/da62944291a7ca9ef6fab30b7add96040251daf3/README.md#L56-L76), [`ai-log/etapa-04.md`](https://github.com/IoanC2/AnimalShelter/blob/da62944291a7ca9ef6fab30b7add96040251daf3/ai-log/etapa-04.md) | Read the stage documentation |
-| S4-R7 | The Stage 4 changes are committed and published | [Stage 4 commit](https://github.com/IoanC2/AnimalShelter/commit/da62944291a7ca9ef6fab30b7add96040251daf3) | Open the commit and inspect its changed files |
+| S2-R1 | script legat și teste în consolă | [`mockup/index.html`](mockup/index.html), [`mockup/animals.js`](mockup/animals.js) | deschide F12/Console |
+| S2-R2 | cel puțin trei obiecte cu câmpurile obligatorii | [`mockup/animals.js`](mockup/animals.js) | citește array-ul |
+| S2-R3 | listare, numărare, căutare, adăugare, comutare, ștergere | [`mockup/animals.js`](mockup/animals.js) | verifică funcțiile în consolă |
+| S2-R4 | respingere nume/specie/categorie invalide | [`mockup/animals.js`](mockup/animals.js) | rulează testele de validare |
+| S2-R5 | array inițial nemodificat | [`mockup/animals.js`](mockup/animals.js) | compară lungimile |
+| S2-R6 | README și jurnal | [`README.md`](README.md), [`ai-log/etapa-02.md`](ai-log/etapa-02.md) | citește documentația |
+| S2-R7 | commit public cu mesaj `Stage 2` | istoricul Git | de completat prin commit conform |
 
-## Stage 5: Local state and events
-The animal list now lives in React state. Users can add animals through the
-form, toggle adoption status, delete animals, and switch between light and dark
-themes. The counters are derived from the current state and update
-automatically. Changes are kept in memory and reset when the page is refreshed.
+### Etapele 3–5
 
-### Stage 5 verification
-
-| ID | Requirement | Where | How to check |
+| ID | Cerință | Unde | Verificare |
 | --- | --- | --- | --- |
-| S5-R1 | The list is stored in `useState` in `App` | [`App.jsx#L17`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/frontend/src/App.jsx#L17) | Inspect the state declaration |
-| S5-R2 | Checking an animal changes its status and card appearance | [`AnimalCard.jsx#L9-L16`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/frontend/src/components/AnimalCard.jsx#L9-L16) | Click an animal checkbox |
-| S5-R3 | Deleting removes an animal from the list | [`App.jsx#L31-L35`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/frontend/src/App.jsx#L31-L35), [`AnimalCard.jsx#L28-L34`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/components/AnimalCard.jsx#L28-L34) | Click `Șterge` |
-| S5-R4 | The available counter is derived from state | [`App.jsx#L19`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/frontend/src/App.jsx#L19) | Toggle an animal and watch the header |
-| S5-R5 | Updates are immutable | [`App.jsx#L21-L57`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/frontend/src/App.jsx#L21-L57) | Inspect the `map`, `filter`, and spread updates |
-| S5-R6 | The theme button switches light and dark mode | [`App.jsx#L62-L66`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/frontend/src/App.jsx#L62-L66), [`App.css#L78-L119`](https://github.com/IoanC2/AnimalShelter/blob/c4bc04db61aac539b2eb73cec11053b8224f4b5c/frontend/src/App.css#L78-L119) | Click the theme button in both directions |
-| S5-R7 | Documentation and AI log are updated | [`README.md#L79-L100`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/README.md#L79-L100), [`ai-log/etapa-05.md`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/ai-log/etapa-05.md) | Read the stage documentation |
-| S5-R8 | The Stage 5 changes are committed and published | [Stage 5 commit](https://github.com/IoanC2/AnimalShelter/commit/c4bc04db61aac539b2eb73cec11053b8224f4b5c) | Open the commit and inspect its changed files |
-| S5-R9 | The extra add-animal form creates a new available card | [`App.jsx#L37-L60`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7539672fc5f56c97671/frontend/src/App.jsx#L37-L60), [`App.jsx#L94-L120`](https://github.com/IoanC2/AnimalShelter/blob/53cf55058babf619aee1d7532fc5f56c97671/frontend/src/App.jsx#L94-L120) | Fill in the form and click `Adaugă animal` |
-
-The add-animal form is an extra interaction built on the same local state. It
-validates the name in the browser, creates a new available animal, and renders
-the new card without reloading the page. See the [add-animal commit](https://github.com/IoanC2/AnimalShelter/commit/53cf55058babf619aee1d7539672fc5f56c97671).
-
-## Adaptarea la tema proprie
-| Element | TaskFlow | BookShelf | WatchList | Tema proprie: AnimalShelter |
-| --- | --- | --- | --- | --- |
-| fișierul JavaScript | `taskuri.js` | `carti.js` | `filme.js` | `animale.js` |
-| array-ul | `taskuri` | `carti` | `filme` | `animale` |
-| valorile fixe | `PRIORITATI` | `FORMATE` | `TIPURI` | `SPECII` |
-| numărarea elementelor active | `numaraActive` | `numaraNecitite` | `numaraDeVazut` | `numaraDisponibile` |
-| comutarea stării | `comutaGata` | `comutaCitita` | `comutaVazu` | `comutaAdoptia` |
-| adăugarea unui element | `adaugaTask` | `adaugaCarte` | `adaugaFilm` | `adaugaAnimal` |
-| ștergerea unui element | `stergeTask` | `stergeCarte` | `stergeFilm` | `stergeAnimal` |
-| căutarea după ID | `cautaTaskDupaId` | `cautaCarteDupaId` | `cautaFilmDupaId` | `cautaAnimalDupaId` |
-| căutarea după etichetă | `cautaDupaEticheta` | `cautaDupaFormat` | `cautaDupaTip` | `cautaDupaSpecie` |
-| câmpul pentru titlu | `titlu` | `titlu` | `titlu` | `name` |
-| câmpul pentru etichetă | `eticheta` | `format` | `tip` | `species` |
-| câmpul pentru stare | `gata` | `citita` | `vazut` | `adopted` |
-| stare inițială | `false` | `false` | `false` | `false` — disponibil pentru adopție |
-## Verification table
-| ID | Requirement | Where (permalink) | How to check |
-| --- | --- | --- | --- |
-| S1-R1 | README contains the application description, data fields, sample data, and run instructions | [README.md](https://github.com/IoanC2/AnimalShelter/blob/6d055e20e31bcfe7000bddbd3610210a1e36a263/README.md#L1-L16) | Read the linked sections |
-| S1-R2 | README contains the AI usage section | [README.md](https://github.com/IoanC2/AnimalShelter/blob/6d055e20e31bcfe7000bddbd3610210a1e36a263/README.md#L17-L21) | Read the AI usage table |
-| S1-R3 | Stage 1 AI log is documented | [ai-log/etapa-01.md](https://github.com/IoanC2/AnimalShelter/blob/6d055e20e31bcfe7000bddbd3610210a1e36a263/ai-log/etapa-01.md#L1-L17) | Read the stage log |
-| S1-R4 | Page contains a header, a text input, a select, and three cards with project data | [index.html](https://github.com/IoanC2/AnimalShelter/blob/6d055e20e31bcfe7000bddbd3610210a1e36a263/index.html#L10-L70) | Open the page and inspect the form and list |
-| S1-R5 | Adopted card has a distinct completed appearance | [style.css](https://github.com/IoanC2/AnimalShelter/blob/6d055e20e31bcfe7000bddbd3610210a1e36a263/style.css#L312-L318) | Inspect Bella's card |
-| S1-R6 | Layout has two columns on desktop and one column below 700px | [style.css](https://github.com/IoanC2/AnimalShelter/blob/6d055e20e31bcfe7000bddbd3610210a1e36a263/style.css#L199-L204), [style.css](https://github.com/IoanC2/AnimalShelter/blob/6d055e20e31bcfe7000bddbd3610210a1e36a263/style.css#L334-L347) | Resize the page below 700px |
-| S1-R7 | Page provides visible keyboard focus and a readable dark theme | [style.css](https://github.com/IoanC2/AnimalShelter/blob/6d055e20e31bcfe7000bddbd3610210a1e36a263/style.css#L29-L72), [style.css](https://github.com/IoanC2/AnimalShelter/blob/6d055e20e31bcfe7000bddbd3610210a1e36a263/style.css#L329-L331) | Use Tab and enable dark mode |
-| S1-R8 | Stage 1 commit is present in the repository history | [Stage 1 commit](https://github.com/IoanC2/AnimalShelter/commit/6d055e20e31bcfe7000bddbd3610210a1e36a263) | Open the commit and inspect its changed files |
-| S2-R1 | JavaScript file is linked and console tests run when the page loads | [index.html](https://github.com/IoanC2/AnimalShelter/blob/COMMIT_SHA/index.html#L11), [animals.js](https://github.com/IoanC2/AnimalShelter/blob/COMMIT_SHA/animals.js#L1-L51) | Open the page, press F12, open the Console tab, and check the output |
-| S2-R2 | Array contains at least three animals with an id, name, state, and species | [animals.js](https://github.com/IoanC2/AnimalShelter/blob/COMMIT_SHA/animals.js#L1-L5) | Read the `animals` array |
-| S2-R3 | Listing, counting available animals, searching, adding, toggling adoption, and deleting are implemented | [animals.js](https://github.com/IoanC2/AnimalShelter/blob/COMMIT_SHA/animals.js#L7-L51) | Inspect the functions and verify their results in the browser Console |
-| S2-R4 | Adding an animal rejects an empty name and an invalid species | [animals.js](https://github.com/IoanC2/AnimalShelter/blob/COMMIT_SHA/animals.js#L25-L44) | Run invalid calls in the Console and check that errors are reported |
-| S2-R5 | The original `animals` array remains unchanged after adding an animal | [animals.js](https://github.com/IoanC2/AnimalShelter/blob/COMMIT_SHA/animals.js#L25-L44) | Compare `animals.length` with the length of the array returned by `addAnimal` |
-| S2-R6 | README contains the Stage 2 section and the AI log is documented | [README.md](https://github.com/IoanC2/AnimalShelter/blob/COMMIT_SHA/README.md), [ai-log/etapa-02.md](https://github.com/IoanC2/AnimalShelter/blob/COMMIT_SHA/ai-log/etapa-02.md) | Read the Stage 2 documentation |
-| S2-R7 | Stage 2 commit was pushed to GitHub | [Stage 2 commit](https://github.com/IoanC2/AnimalShelter/commit/COMMIT_SHA) | Open the commit and inspect its changed files |
+| S3-R1–S3-R5 | Vite pornește, datele sunt calculate, build-ul trece și dependențele sunt ignorate | [`frontend/package.json`](frontend/package.json), [`frontend/.gitignore`](frontend/.gitignore), [`frontend/src/App.jsx`](frontend/src/App.jsx) | `npm run lint`, `npm run build` |
+| S3-R6 | README și jurnal | [`README.md`](README.md), [`ai-log/etapa-03.md`](ai-log/etapa-03.md) | citește documentația |
+| S3-R7 | commit public cu mesaj `Stage 3` | istoricul Git | de completat prin commit conform |
+| S4-R1–S4-R5 | componente, props, `map`/`key`, listă goală și aspect condițional | [`frontend/src/components/`](frontend/src/components/) | inspectează și testează pagina |
+| S4-R6 | README și jurnal | [`README.md`](README.md), [`ai-log/etapa-04.md`](ai-log/etapa-04.md) | citește documentația |
+| S4-R7 | commit public cu mesaj `Stage 4` | istoricul Git | de completat prin commit conform |
+| S5-R1–S5-R6 | state, bifare, ștergere, contor derivat, update-uri imutabile și temă | [`frontend/src/App.jsx`](frontend/src/App.jsx), [`frontend/src/components/AnimalCard.jsx`](frontend/src/components/AnimalCard.jsx), [`frontend/src/App.css`](frontend/src/App.css) | interacționează cu aplicația |
+| S5-R7 | consolă fără avertismente, README și jurnal | [`README.md`](README.md), [`ai-log/etapa-05.md`](ai-log/etapa-05.md) | F12/Console |
+| S5-R8 | commit public cu mesaj `Stage 5` | [`c4bc04d`](https://github.com/IoanC2/AnimalShelter/commit/c4bc04d) | deschide commitul |

@@ -17,7 +17,9 @@
 - Added adoption toggling and deletion through immutable state updates.
 - Added a controlled checkbox and an accessible delete button to each card.
 - Added a button for switching between light and dark themes.
-- Added an extra form for creating a new animal with a name and species.
+- Added an extra form for creating a new animal with a name, species, age category,
+  and responsible user. The form validates the required name and user fields,
+  then adds the complete animal object to local state as available.
 
 ## Verification
 

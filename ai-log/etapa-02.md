@@ -15,8 +15,8 @@
 
 ### 1. Create the Animal Shelter data model
 
-- Asked: Replace the generic task list with an array of animals containing `id`, `name`, `adopted`, and `species`.
-- Got: The `animals` array with the sample data for Luna, Bella, and Daisy, plus the fixed `SPECIES` values.
+- Asked: Replace the generic task list with an array of animals containing `id`, `name`, `adopted`, `species`, `age_category`, and `user`.
+- Got: The `animals` array with the sample data for Luna, Bella, and Daisy, plus the fixed `SPECIES` and `AGE_CATEGORIES` values.
 
 ### 2. Implement read and search functions
 
