@@ -241,7 +241,7 @@ h1 {
 
 .container {
   display: grid;
-  grid-template-columns: minmax(230px, 1fr) minmax(0, 2fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
   align-items: start;
   margin-top: 28px;
@@ -269,6 +269,32 @@ h1 {
 .panel-intro {
   margin-bottom: 20px;
   font-size: .9rem;
+}
+
+.info,
+.error {
+  margin: 22px 0 0;
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-size: .9rem;
+  font-weight: 600;
+}
+
+.info {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.error {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.error code {
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: rgb(0 0 0 / 8%);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
 }
 
 .item-form {

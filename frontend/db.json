@@ -1,0 +1,44 @@
+{
+  "animals": [
+    {
+      "id": 1,
+      "name": "Luna",
+      "adopted": false,
+      "species": "dog",
+      "age_category": "Adult",
+      "user": "Ana"
+    },
+    {
+      "id": 2,
+      "name": "Bella",
+      "adopted": true,
+      "species": "cat",
+      "age_category": "Senior",
+      "user": "Mihai"
+    },
+    {
+      "id": 3,
+      "name": "Daisy",
+      "adopted": false,
+      "species": "rabbit",
+      "age_category": "Young",
+      "user": "Ioana"
+    },
+    {
+      "id": 4,
+      "name": "Piscot",
+      "adopted": false,
+      "species": "dog",
+      "age_category": "Adult",
+      "user": "Elena"
+    },
+    {
+      "id": 5,
+      "name": "Mimi",
+      "adopted": true,
+      "species": "cat",
+      "age_category": "Young",
+      "user": "Radu"
+    }
+  ]
+}

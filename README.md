@@ -45,7 +45,7 @@ npm run build
 | Instrument | Utilizare |
 | --- | --- |
 | Gemini | stilizarea CSS din Etapa 1, variabilele de temă, layout responsive și documentație |
-| GitHub Copilot în Visual Studio Code | configurarea React, componentele, interacțiunile și verificarea codului din Etapele 3–5 |
+| GitHub Copilot în Visual Studio Code | configurarea React, componentele, interacțiunile, API-ul mock și verificarea codului din Etapele 3–6 |
 
 Nu există linkuri publice către conversațiile AI; au fost păstrate transcripturi și
 descrieri ale solicitărilor în jurnalele din [`ai-log/`](ai-log/).
@@ -57,6 +57,7 @@ descrieri ale solicitărilor în jurnalele din [`ai-log/`](ai-log/).
 - [x] Etapa 3: proiect Vite și React
 - [x] Etapa 4: componente construite din date
 - [x] Etapa 5: state local și evenimente
+- [x] Etapa 6: date de la un API mock
 
 ## Etapa 1: mockup HTML și CSS
 
@@ -90,7 +91,39 @@ Lista este păstrată în `useState`. Formularul colectează numele, specia,
 categoria de vârstă și persoana responsabilă. Checkbox-ul comută adopția,
 butonul șterge animalul, contorul disponibil este derivat din state, iar butonul
 din antet comută tema luminoasă/întunecată prin `data-theme` și variabile CSS.
-Formularul adaugă animale noi în state, cu toate câmpurile modelului.
+Formularul de adăugare este reintrodus în Etapa 7, când operațiile vor fi
+salvate pe server.
+
+## Etapa 6: date de la un API mock
+
+Datele React sunt încărcate de `json-server` din [`frontend/db.json`](frontend/db.json).
+API-ul folosește ruta `/animals`, iar cererile HTTP sunt centralizate în
+[`frontend/src/api.js`](frontend/src/api.js). Adresa serverului poate fi schimbată
+prin [`frontend/.env.example`](frontend/.env.example) și variabila `VITE_API_URL`.
+
+Pornește aplicația în două terminale, din `frontend/`:
+
+```text
+npm run api
+npm run dev
+```
+
+Deschide `http://localhost:3001/animals` pentru verificarea JSON-ului. Aplicația
+afișează `Se încarcă animalele...` în timpul cererii și un mesaj explicit dacă API-ul
+nu răspunde. În această etapă bifarea și ștergerea sunt locale și se pierd la
+refresh; persistența lor este cerința Etapei 7.
+
+### Etapa 6: verificare
+
+| ID | Cerință | Unde | Verificare |
+| --- | --- | --- | --- |
+| S6-R1 | API-ul pornește și ruta afișează JSON | [`frontend/package.json`](frontend/package.json), [`frontend/db.json`](frontend/db.json) | `npm run api`, apoi deschide `/animals` |
+| S6-R2 | Datele nu mai sunt în codul React | [`frontend/src/App.jsx`](frontend/src/App.jsx) | verifică `useState([])` |
+| S6-R3 | Mesaj de încărcare | [`frontend/src/App.jsx`](frontend/src/App.jsx), [`frontend/src/App.css`](frontend/src/App.css) | pornește API-ul cu delay |
+| S6-R4 | Mesaj de eroare când API-ul este oprit | [`frontend/src/App.jsx`](frontend/src/App.jsx) | oprește API-ul și reîncarcă |
+| S6-R5 | `fetch` doar în `api.js`, URL din env | [`frontend/src/api.js`](frontend/src/api.js), [`frontend/.env.example`](frontend/.env.example) | caută `fetch` și verifică `res.ok` |
+| S6-R6 | README și jurnal actualizate | [`README.md`](README.md), [`ai-log/etapa-06.md`](ai-log/etapa-06.md) | citește documentația |
+| S6-R7 | commit Stage 6 publicat | istoricul Git | verifică commitul după push |
 
 ## Direcție vizuală
 
